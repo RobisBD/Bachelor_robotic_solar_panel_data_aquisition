@@ -42,7 +42,7 @@ client.on("message", (topic, message, packet) => {
 
   client.publish(
     "server/api-data",
-    JSON.stringify({ cloudy: 1, hz: "something more" })
+    JSON.stringify({ cloudy: 1, sun_lat: , sun_lng:  })
   );
 });
 
