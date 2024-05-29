@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="lv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>DAS System | Data Aquisition System</title>
+  </head>
+  <body>
+    <header class="header">
+      <h1 class="heading-primary">DAS Sistēma</h1>
+    </header>
+    <div class="layout">
+      <section class="robots">
+        <ul class="robot-list">
+          <li class="robot-card">
+            <img src="robot_img.jpg" alt="ROBOT-ID" />
+            <div class="robot-data-group">
+              <span class="robot-id">ROBOT-01</span>
+              <span class="current-location-lat"
+                >Lat: <span class="lat">-</span></span
+              >
+              <span class="current-location-lng"
+                >Lng: <span class="lng">-</span></span
+              >
+              <span class="battery-level"><i class="bx bx-battery"></i>-%</span>
+            </div>
+          </li>
+          <li class="robot-card offline-robot">
+            <img src="robot_img.jpg" alt="ROBOT-ID" />
+            <div class="robot-data-group">
+              <span class="robot-id">ROBOT-02</span>
+              <span class="current-location-lat"
+                >Lat: <span class="lat">-</span></span
+              >
+              <span class="current-location-lng"
+                >Lng: <span class="lng">-</span></span
+              >
+              <span class="battery-level"><i class="bx bx-battery"></i>-%</span>
+            </div>
+          </li>
+        </ul>
+      </section>
+      <section class="map-section">
+        <div id="map"></div>
+      </section>
+      <section class="charts">
+        <div class="chart-group">
+          <div class="heading-charts">
+            <span class="chart-h">Saules paneļa saražotā enerģija</span>
+          </div>
+          <div class="sensor-charts">
+            <canvas id="sensors" height="50" width="100"></canvas>
+          </div>
+          <div class="time-options">
+            <button class="active">1h</button>
+            <button>12h</button>
+            <button>24h</button>
+            <button>1 nedēļa</button>
+          </div>
+        </div>
+        <div class="chart-group">
+          <div class="heading-charts">
+            <span class="chart-h">Mākoņu daudzums (%)</span>
+          </div>
+          <div class="weather-charts">
+            <canvas id="weather" height="50" width="100"></canvas>
+          </div>
+          <div class="time-options">
+            <button>1h</button>
+            <button>12h</button>
+            <button>24h</button>
+            <button>1 nedēļa</button>
+          </div>
+        </div>
+        <div class="chart-group">
+          <div class="heading-charts">
+            <span class="chart-h">Saules UV staru līmenis?</span>
+          </div>
+          <div class="weather-charts">
+            <canvas id="radiation" height="50" width="100"></canvas>
+          </div>
+          <div class="time-options">
+            <button>1h</button>
+            <button>12h</button>
+            <button>24h</button>
+            <button>1 nedēļa</button>
+          </div>
+        </div>
+        <div class="chart-group">
+          <div class="heading-charts">
+            <span class="chart-h">Saules trajektorija (datums šeit)</span>
+          </div>
+          <div class="sun-trajectories">
+            <canvas id="sun-traject" height="50" width="100"></canvas>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
