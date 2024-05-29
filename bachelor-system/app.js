@@ -40,9 +40,36 @@ client.on("message", (topic, message, packet) => {
   console.log(topic);
   console.log(JSON.parse(packet.payload.toString()));
 
+  const {sunAltitude, sunLatitude, cloudinessPrecentage} = getWeatherData("Riga", "09ffsf0944f40909090#44fe");
+  
   client.publish(
     "server/api-data",
-    JSON.stringify({ cloudy: 1, sun_lat: , sun_lng:  })
+    JSON.stringify({ cloudy: cloudinessPrecentage, sun_lat: sunLatitude, sun_lng: sunAltitude })
   );
 });
 
+async function getWeatherData(cityName, apiKey) {
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`;
+    
+    try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+        
+        if (response.ok) {
+            const sunAltitude = data.sys.sunrise ? data.sys.sunrise : "N/A";
+            const sunLatitude = data.coord.lat ? data.coord.lat : "N/A";
+            const cloudinessPercentage = data.clouds.all ? data.clouds.all : "N/A";
+            
+            return {
+                sunAltitude,
+                sunLatitude,
+                cloudinessPercentage
+            };
+        } else {
+            throw new Error(data.message);
+        }
+    } catch (error) {
+        console.error("Error fetching weather data:", error);
+        return null;
+    }
+}
